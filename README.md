@@ -1,36 +1,48 @@
 # Project---Contextly
-# CONTEXTLY
-### Real-Time Emotional Intelligence for Text-Based Team Communication
+# CONTEXTLY  
+### Real-Time Emotional Intelligence for Remote Team Communication
 
-CONTEXTLY is an applied machine learning project that detects emotional tone in text messages and visualizes it using a color-based interface. The goal is to reduce miscommunication in remote and hybrid teams where emotional cues are often lost in text-only conversations.
+CONTEXTLY is a machine learning–powered prototype that detects emotional tone in text messages and visualizes it in real time.  
+The project addresses a core problem in remote work: **loss of emotional context in text-based communication**, which often leads to misinterpretation, friction, and reduced team effectiveness.
 
-This project was developed as the final project for **MA 707 – Machine Learning** at **Bentley University**, combining natural language processing, system design, and product thinking.
+Built as part of **MA 707 – Machine Learning (Bentley University)**, this project combines **NLP modeling, product design, and business strategy** into a single end-to-end solution.
 
 ---
 
-## Problem Motivation
+## Problem Statement
 
-Modern teams rely heavily on tools like Slack and Microsoft Teams. While efficient, text-based communication removes emotional context, often causing messages to be interpreted as harsh, dismissive, or emotionally ambiguous. These misunderstandings lead to friction, slower collaboration, and unnecessary conflict.
+Remote and hybrid teams rely heavily on tools like Slack and Microsoft Teams.  
+While efficient, text-based communication strips away emotional cues, often causing messages to be perceived as:
+
+- Harsh or dismissive  
+- Passive-aggressive  
+- Emotionally ambiguous  
+
+These misinterpretations lead to unnecessary conflict, slower collaboration, and increased stress across teams.
 
 ---
 
 ## Solution Overview
 
-CONTEXTLY introduces a real-time emotional intelligence layer for text communication by:
-- Analyzing message tone using a trained NLP model
-- Classifying messages into eight emotional categories
-- Mapping predicted emotions to distinct colors for fast visual interpretation
+CONTEXTLY restores emotional clarity to workplace messaging by:
 
-The system is designed to be non-intrusive, lightweight, and extensible for future chat integrations.
+- Analyzing message tone **in real time**
+- Classifying messages into **8 emotional states**
+- Displaying subtle emotional cues directly within the chat interface
+
+The solution is designed to be **non-intrusive**, requiring no workflow changes or message rewriting.
+
+**Target users:**  
+Remote teams, managers, HR & People Operations teams.
 
 ---
 
 ## Machine Learning Approach
 
 ### Emotion Classification
-- Model: Fine-tuned DistilRoBERTa
-- Task: Multi-class emotion classification
-- Emotion classes:
+- **Model:** Fine-tuned **DistilRoBERTa**
+- **Task:** Multi-class emotion classification
+- **Emotion classes (8):**
   - Joy
   - Love
   - Surprise
@@ -40,61 +52,85 @@ The system is designed to be non-intrusive, lightweight, and extensible for futu
   - Disgust
   - Neutral
 
-### Text Preprocessing
-- Emoji conversion to text
+### Model Performance
+- **Evaluation:** 10% held-out test set
+- **Metric:** Accuracy & F1-score
+- **Result:** ~84% balanced performance across classes
+
+---
+
+## Text Preprocessing
+
+To improve robustness on real-world chat messages, preprocessing included:
+
+- Emoji conversion to textual meaning
 - Slang expansion
 - Reduction of exaggerated spelling (e.g., “soooo” → “soo”)
 - Whitespace normalization
 
-### Evaluation
-- Test split: 10% held-out data
-- Metrics: Accuracy and F1-score
-- Performance: Approximately 84% balanced performance across emotion classes
+This ensured consistent inputs for model inference while preserving emotional signal.
 
 ---
 
 ## Emotion-to-Color Mapping
 
+Each predicted emotion is mapped to a consistent color, allowing users to **visually interpret tone instantly** without disrupting conversation flow.
+
 | Emotion   | Color |
-|----------|-------|
-| Joy      | Green |
-| Love     | Pink  |
-| Surprise | Yellow|
-| Anger    | Red   |
-| Sadness  | Blue  |
-| Fear     | Purple|
-| Disgust  | Brown |
-| Neutral  | Gray  |
+|---------|-------|
+| Joy     | Green |
+| Love    | Pink |
+| Surprise| Yellow |
+| Anger   | Red |
+| Sadness | Blue |
+| Fear    | Purple |
+| Disgust | Brown |
+| Neutral | Gray |
 
 ---
 
-## Tools and Technologies
+## System Design (Prototype)
 
-- Python
-- Hugging Face Transformers
-- PyTorch
-- scikit-learn
-- Jupyter Notebook
-- Google Colab
+The conceptual architecture separates concerns for scalability:
 
----
+1. **Message ingestion**
+2. **Text preprocessing**
+3. **ML inference**
+4. **Emotion + confidence output**
+5. **UI visualization (Slack-style interface)**
 
-## Limitations and Future Work
-
-- This implementation is a prototype and not a live chat integration
-- Future improvements include:
-  - Emotion smoothing across conversational context
-  - Domain-specific fine-tuning
-  - Integration with Slack or Microsoft Teams
-  - Team-level sentiment analytics dashboards
+While this repository focuses on the **ML and prototype layer**, the system is designed to integrate seamlessly with collaboration platforms.
 
 ---
 
-## Contributors
+## Business & Product Perspective
 
-- Augustine Ezirim
-- Kingsolomon Ehinola
-- Mitchel Igolimah
-- Nyasha Sibanda
+- **Business Model:** B2B SaaS (per-seat or per-team pricing)
+- **Value Proposition:**  
+  Reduced miscommunication → faster alignment → lower conflict & turnover
+- **Differentiation:**  
+  Real-time, message-level emotional insight (not retrospective surveys)
 
+---
+
+## Future Enhancements
+
+**Machine Learning**
+- Larger, domain-specific datasets
+- Emotion smoothing across conversations
+- Context-aware emotion transitions
+
+**Product**
+- Slack API integration
+- Expansion to Microsoft Teams
+- Team-level sentiment analytics dashboards
+
+---
+
+## Team
+
+- Augustine Ezirim  
+- Kingsolomon Ehinola  
+- Mitchel Igolimah  
+- Nyasha Sibanda  
 
